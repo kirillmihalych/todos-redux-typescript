@@ -18,8 +18,7 @@ export const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTask: (state, action) => {
-      console.log(action.payload)
+    addTask: (state, action: PayloadAction<Tasks>) => {
       state.tasks = [...state.tasks, action.payload]
     },
   },
