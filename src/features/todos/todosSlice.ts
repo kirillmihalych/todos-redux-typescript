@@ -1,31 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../app/store'
 
+interface Tasks {
+  id: string
+  content: string
+}
+
 interface TodosState {
-  tasks: {
-    id: string
-    content: string
-  }[]
+  tasks: Tasks[]
 }
 
 const initialState: TodosState = {
-  tasks: [
-    {
-      id: '1',
-      content: 'task',
-    },
-  ],
+  tasks: [],
 }
 
 export const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTask: (state: RootState, action: PayloadAction<string>) => {
+    addTask: (state, action) => {
+      console.log(action.payload)
       state.tasks = [...state.tasks, action.payload]
     },
   },
 })
+
+export const { addTask } = todosSlice.actions
 
 export const selectTodos = (state: RootState) => state.todos.tasks
 
